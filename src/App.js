@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import css from './styles/App.module.scss';
 import FeedbackOptions from './components/FeedbackOptions';
+import Statistics from './components/Statistics';
 
 class App extends Component {
     state = {
@@ -9,20 +10,28 @@ class App extends Component {
         bad: 0,
     };
 
-    handleLeaveFeedback(feedback) {
-        console.log(feedback);
-    }
+    handleLeaveFeedback = feedback => {
+        this.setState({ [feedback]: this.state[feedback] + 1 });
+    };
 
     render() {
+        const { good, neutral, bad } = this.state;
+
         return (
             <>
                 <h1 className={css.feedbackTitle}>Please leave feedback</h1>
                 <FeedbackOptions
                     options={Object.keys(this.state)}
                     onLeaveFeedback={this.handleLeaveFeedback}
-                ></FeedbackOptions>
+                />
                 <h2 className={css.statisticsTitle}>Statistics</h2>
-                {/* <Statistics good={} neutral={} bad={} total={} positivePercentage={}></Statistics> */}
+                <Statistics
+                    good={good}
+                    neutral={neutral}
+                    bad={bad}
+                    // total={}
+                    // positivePercentage={}
+                />
             </>
         );
     }
