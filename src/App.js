@@ -11,7 +11,7 @@ class App extends Component {
     };
 
     handleLeaveFeedback = feedback => {
-        this.setState({ [feedback]: this.state[feedback] + 1 });
+        this.setState(actState => ({ [feedback]: actState[feedback] + 1 }));
     };
 
     render() {
