@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import css from './styles/App.module.scss';
+// import css from './styles/App.module.scss';
 import FeedbackOptions from './components/FeedbackOptions';
 import Statistics from './components/Statistics';
+import Section from './components/Section';
 
 class App extends Component {
     state = {
@@ -35,19 +36,22 @@ class App extends Component {
 
         return (
             <>
-                <h1 className={css.feedbackTitle}>Please leave feedback</h1>
-                <FeedbackOptions
-                    options={Object.keys(this.state)}
-                    onLeaveFeedback={this.handleLeaveFeedback}
-                />
-                <h2 className={css.statisticsTitle}>Statistics</h2>
-                <Statistics
-                    good={good}
-                    neutral={neutral}
-                    bad={bad}
-                    total={this.countTotalFeedback()}
-                    positivePercentage={this.countPositiveFeedbackPercentage()}
-                />
+                <Section title="Please leave feedback">
+                    <FeedbackOptions
+                        options={Object.keys(this.state)}
+                        onLeaveFeedback={this.handleLeaveFeedback}
+                    />
+                </Section>
+
+                <Section title="Statistics">
+                    <Statistics
+                        good={good}
+                        neutral={neutral}
+                        bad={bad}
+                        total={this.countTotalFeedback()}
+                        positivePercentage={this.countPositiveFeedbackPercentage()}
+                    />
+                </Section>
             </>
         );
     }
